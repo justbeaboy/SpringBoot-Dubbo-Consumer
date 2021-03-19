@@ -5,14 +5,14 @@ server:
 spring:
   main:
     allow-bean-definition-overriding: true
-
 dubbo:
   application:
     name: dubbo-consumer
     qos-accept-foreign-ip: false
     qos-enable: false
+
   scan:
-    basePackages: com.nacos.impl
+    basePackages: com.nacos
   provider:
     owner: mr.softrock
   protocol:
@@ -22,5 +22,11 @@ dubbo:
   consumer:
     timeout: 10000
     lazy: true
+    check: false
   registry:
     address: nacos://localhost:8848
+nacos:
+  config:
+    server-addr: localhost:8848
+    namespace: ad6d7661-8c8a-465f-ac35-0e6cb64f6480
+    data-id: springboot-nacos-test
