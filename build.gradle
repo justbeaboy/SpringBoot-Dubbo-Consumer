@@ -33,9 +33,7 @@ repositories {
 
 dependencies {
     //自定义rpc包
-//    implementation 'com.ai.mrsoftrock.rpc:testrpc:4.0.31'
     implementation 'com.ai.mrsoftrock.rpc:testrpc:4.0.31'
-
 
 //    //框架包
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '2.3.7.RELEASE'
@@ -45,10 +43,6 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.3.7.RELEASE'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.7.RELEASE'
 
-//    implementation('org.springframework.boot:spring-boot-starter-security')
-//    implementation('org.springframework.boot:spring-boot-starter-validation')
-//    implementation('org.springframework.boot:spring-boot-starter-cache')
-//    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     implementation group: 'org.apache.dubbo', name: 'dubbo-spring-boot-starter', version: '2.7.8'
     implementation group: 'org.apache.dubbo', name: 'dubbo', version: '2.7.7'
