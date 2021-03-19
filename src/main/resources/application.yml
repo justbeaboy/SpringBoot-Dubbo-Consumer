@@ -1,0 +1,26 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /springboot-consumer
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+dubbo:
+  application:
+    name: dubbo-consumer
+    qos-accept-foreign-ip: false
+    qos-enable: false
+  scan:
+    basePackages: com.nacos.impl
+  provider:
+    owner: mr.softrock
+  protocol:
+    name: dubbo
+    port: -1
+    payload: 20971528
+  consumer:
+    timeout: 10000
+    lazy: true
+  registry:
+    address: nacos://localhost:8848
