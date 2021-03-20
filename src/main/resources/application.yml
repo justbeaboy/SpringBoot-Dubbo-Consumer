@@ -29,4 +29,4 @@ nacos:
   config:
     server-addr: localhost:8848
     namespace: ad6d7661-8c8a-465f-ac35-0e6cb64f6480
-    data-id: springboot-nacos-test
+#    data-id: springboot-nacos-test
