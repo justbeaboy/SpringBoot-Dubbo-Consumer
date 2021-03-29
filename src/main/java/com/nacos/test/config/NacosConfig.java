@@ -1,4 +1,4 @@
-package com.nacos.config;
+package com.nacos.test.config;
 
 import com.alibaba.nacos.api.config.ConfigType;
 import com.alibaba.nacos.api.config.annotation.NacosValue;

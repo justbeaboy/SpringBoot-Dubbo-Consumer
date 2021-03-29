@@ -1,7 +1,7 @@
-package com.nacos.controller;
+package com.nacos.test.controller;
 
-import com.nacos.config.NacosConfig;
-import com.nacos.impl.ICunsumerProxySv;
+import com.nacos.test.config.NacosConfig;
+import com.nacos.test.impl.ICunsumerProxySv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -5,28 +5,38 @@ server:
 spring:
   main:
     allow-bean-definition-overriding: true
+
 dubbo:
   application:
     name: dubbo-consumer
     qos-accept-foreign-ip: false
     qos-enable: false
-
   scan:
-    basePackages: com.nacos
+    basePackages: com.nacos.test
   provider:
     owner: mr.softrock
   protocol:
     name: dubbo
-    port: -1
+    port: 20880
     payload: 20971528
   consumer:
-    timeout: 10000
+    timeout: 600000
     lazy: true
     check: false
+#  registry:
+#    protocol: zookeeper
+#    address: 120.92.78.198:2181
   registry:
-    address: nacos://localhost:8848
+    address: nacos://120.92.78.198:8848
+    parameters[namespace]: 8e6155c7-1149-4d45-a5f4-c87c2bbb4e47
+    username: nacos
+    password: nacos
+
 nacos:
   config:
-    server-addr: localhost:8848
-    namespace: ad6d7661-8c8a-465f-ac35-0e6cb64f6480
-#    data-id: springboot-nacos-test
+    server-addr: 120.92.78.198:8848
+    namespace: 2d4c5c4d-9ac8-4665-8eba-3b72345294e7
+rocketmq:
+  name-server: localhost:9876
+
+

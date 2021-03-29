@@ -12,7 +12,7 @@ buildscript {
         moduleName = "springboot-nacos"
         springBootVersion = '2.3.7.RELEASE'
         lombokVersion = '1.18.4'
-        mavenPublicUrl = "http://localhost:8081/repository/mrsoftrock-public/"
+        mavenPublicUrl = "http://120.92.78.198:8081/repository/kingsoft_maven_public/"
     }
     repositories {
         maven { url mavenPublicUrl }
@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
     //自定义rpc包
-    implementation 'com.ai.mrsoftrock.rpc:testrpc:4.0.31'
+    implementation 'com.ai.mrsoftrock.rpc:nacosTest:1.0.1'
 
 //    //框架包
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '2.3.7.RELEASE'
@@ -55,11 +55,10 @@ dependencies {
     annotationProcessor('org.projectlombok:lombok:1.18.4')
 
 //    implementation group: 'com.alibaba.spring', name: 'spring-context-support', version: '1.0.8'
-//    compile('com.alibaba.spring.spring-context-support:1.0.8')
-//            {
-//        exclude(group :'com.alibaba',module :'spring.util.BeanUtils')
-//    }
     implementation group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.7'
+    implementation group: 'org.apache.rocketmq', name: 'rocketmq-spring-boot-starter', version: '2.0.4'
+
+    implementation group: 'org.apache.curator', name: 'curator-recipes', version: '5.1.0'
 
 
 
