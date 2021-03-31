@@ -19,6 +19,7 @@ dubbo:
     name: dubbo
     port: 20880
     payload: 20971528
+#    host: 120.92.78.198
   consumer:
     timeout: 600000
     lazy: true
@@ -29,14 +30,16 @@ dubbo:
   registry:
     address: nacos://120.92.78.198:8848
     parameters[namespace]: 8e6155c7-1149-4d45-a5f4-c87c2bbb4e47
-    username: nacos
-    password: nacos
+  metadata-report:
+    address: nacos://10.33.0.160:8848
 
 nacos:
   config:
     server-addr: 120.92.78.198:8848
     namespace: 2d4c5c4d-9ac8-4665-8eba-3b72345294e7
 rocketmq:
-  name-server: localhost:9876
+  name-server: 10.33.0.160:9876
+  producer:
+    group: producer-nacos-consumer
 
 

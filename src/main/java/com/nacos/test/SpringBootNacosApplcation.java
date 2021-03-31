@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Mr.SoftRock
  * @Date 2021/3/1912:49
  **/
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com")
 @EnableDubbo(scanBasePackages = "com.nacos.test")
 @EnableNacosDiscovery
 public class SpringBootNacosApplcation {

@@ -1,4 +1,4 @@
-package com.nacos.test.impl;
+package com.nacos.test.service;
 
 /**
  * @author Mr.SoftRock

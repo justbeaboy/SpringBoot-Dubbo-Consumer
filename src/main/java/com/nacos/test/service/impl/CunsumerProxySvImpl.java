@@ -1,7 +1,8 @@
-package com.nacos.test.impl;
+package com.nacos.test.service.impl;
 
 import com.ai.mrsoftrock.rpc.nacosTest.INacosSv;
 import com.ai.mrsoftrock.rpc.nacosTest.dto.NaocsTest;
+import com.nacos.test.service.ICunsumerProxySv;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
