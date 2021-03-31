@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
  * @author Mr.SoftRock
  * @Date 2021/3/3114:32
  **/
-@Component
+//@Component
+@Service
 public class MqtestSvImpl implements IMqtestSv {
 
     @Autowired
