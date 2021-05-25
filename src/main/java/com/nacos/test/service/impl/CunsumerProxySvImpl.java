@@ -1,12 +1,7 @@
 package com.nacos.test.service.impl;
 
-import com.ai.mrsoftrock.rpc.nacosTest.INacosSv;
-import com.ai.mrsoftrock.rpc.nacosTest.dto.NaocsTest;
 import com.nacos.test.service.ICunsumerProxySv;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 /**
  * @author Mr.SoftRock
@@ -15,15 +10,16 @@ import java.util.Objects;
 @Service
 public class CunsumerProxySvImpl implements ICunsumerProxySv {
 
-    @DubboReference(version = "1.0.0")
-    INacosSv testSv;
+//    @DubboReference(version = "1.0.0")
+//    INacosSv testSv;
 
     @Override
     public String sayHello() {
-        NaocsTest query = testSv.query();
-        if (Objects.isNull(query)) {
-            return "返回空";
-        }
-        return query.getUserId() + "||||" + query.getUserName();
+//        NaocsTest query = testSv.query();
+//        if (Objects.isNull(query)) {
+//            return "返回空";
+//        }
+//        return query.getUserId() + "||||" + query.getUserName();
+        return null;
     }
 }

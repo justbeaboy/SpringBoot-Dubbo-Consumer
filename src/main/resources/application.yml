@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT:8081}
   servlet:
     context-path: /springboot-consumer
 spring:
@@ -38,7 +38,7 @@ nacos:
     server-addr: 120.92.78.198:8848
     namespace: 2d4c5c4d-9ac8-4665-8eba-3b72345294e7
 rocketmq:
-  name-server: 10.33.0.160:9876
+  name-server: 10.88.128.65:9876
   producer:
     group: producer-nacos-consumer
 

@@ -18,7 +18,7 @@ public class MqtestSvImpl implements IMqtestSv {
     MQProducerService mqProducerService;
     @Override
     public void send() {
-        mqProducerService.sendMessage("mrsoftrock-mq-test", "tag", "writeBacks", "test", false, "test");
+        mqProducerService.sendMessage("mrsoftrocktest", "tag", "writeBacks", "test", false, "test");
 
     }
 }
