@@ -1,10 +1,28 @@
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT:8082}
   servlet:
-    context-path: /springboot-consumer
+    context-path: /springboot-consumer1
 spring:
   main:
     allow-bean-definition-overriding: true
+  redis:
+    host: 10.88.128.65
+    port: 6379
+    timeout: 5s
+    database: 0
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #    driverClassName: com.mysql.cj.jdbc.Driver
+    driverClassName: com.mysql.jdbc.Driver
+    #    url: jdbc:mysql://120.92.9.92:3306
+    url: jdbc:mysql://120.92.9.92:3306
+    username: annotation_admin
+    password: annotation@admin123
+    druid:
+      keep-alive: true
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 1 from dual
+      log-abandoned: true
 
 dubbo:
   application:
@@ -38,7 +56,7 @@ nacos:
     server-addr: 120.92.78.198:8848
     namespace: 2d4c5c4d-9ac8-4665-8eba-3b72345294e7
 rocketmq:
-  name-server: 10.33.0.160:9876
+  name-server: 127.0.0.1:9876
   producer:
     group: producer-nacos-consumer
 

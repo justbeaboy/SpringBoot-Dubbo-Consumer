@@ -32,6 +32,7 @@ public class MQProducerService {
     public void sendMessage(String topic, String tag, Object message, String keys, boolean isSendOrderly, String dataId) {
 
         String destination = String.join(":", topic, tag);
+
         String payload = JSONObject.toJSONString(message);
         log.info("destination [{}],payload[{}]", destination, payload);
         if (!isSendOrderly) {

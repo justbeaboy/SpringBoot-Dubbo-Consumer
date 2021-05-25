@@ -5,6 +5,8 @@ version '1.0-SNAPSHOT'
 apply plugin: 'maven'
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: "com.arenagod.gradle.MybatisGenerator"
+
 
 
 buildscript {
@@ -12,7 +14,7 @@ buildscript {
         moduleName = "springboot-nacos"
         springBootVersion = '2.3.7.RELEASE'
         lombokVersion = '1.18.4'
-        mavenPublicUrl = "http://120.92.78.198:8081/repository/kingsoft_maven_public/"
+        mavenPublicUrl = "http://120.92.78.198:8200/repository/kingsoft_maven_public/"
     }
     repositories {
         maven { url mavenPublicUrl }
@@ -32,8 +34,7 @@ repositories {
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 dependencies {
-    //自定义rpc包
-    implementation 'com.ai.mrsoftrock.rpc:nacosTest:1.0.1'
+
 
 //    //框架包
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '2.3.7.RELEASE'
@@ -56,9 +57,21 @@ dependencies {
 
 //    implementation group: 'com.alibaba.spring', name: 'spring-context-support', version: '1.0.8'
     implementation group: 'com.alibaba.boot', name: 'nacos-config-spring-boot-starter', version: '0.2.7'
-    implementation "org.apache.rocketmq:rocketmq-spring-boot-starter:2.0.3"
+    implementation "org.apache.rocketmq:rocketmq-spring-boot-starter:2.1.0"
 
     implementation group: 'org.apache.curator', name: 'curator-recipes', version: '5.1.0'
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.3.7.RELEASE'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+    implementation group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.4.1'
+    implementation group: 'org.mybatis.generator', name: 'mybatis-generator-core', version: '1.4.0'
+    implementation group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.2.4'
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.7.RELEASE'
+
+    implementation group: 'org.redisson', name: 'redisson', version: '3.15.5'
+
+
 
 
 
