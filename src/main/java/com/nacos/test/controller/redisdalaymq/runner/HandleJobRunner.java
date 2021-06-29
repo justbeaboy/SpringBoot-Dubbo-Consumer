@@ -1,7 +1,7 @@
 package com.nacos.test.controller.redisdalaymq.runner;
 
-import com.alibaba.fastjson.JSONObject;
 
+import com.alibaba.fastjson.JSONObject;
 import com.nacos.test.controller.redisdalaymq.message.MessageWrapper;
 import com.nacos.test.controller.redisdalaymq.rocketmq.MessageProducer;
 import com.nacos.test.controller.redisdalaymq.service.DelayJobService;
