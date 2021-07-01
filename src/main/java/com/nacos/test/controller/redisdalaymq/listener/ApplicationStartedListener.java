@@ -27,6 +27,6 @@ public class ApplicationStartedListener implements ApplicationListener<ContextRe
         ApplicationContext applicationContext = contextRefreshedEvent.getApplicationContext();
         log.info("----获取监听----{}", Objects.isNull(applicationContext));
 
-        delayJobBiz.start();
+//        delayJobBiz.start();
     }
 }
