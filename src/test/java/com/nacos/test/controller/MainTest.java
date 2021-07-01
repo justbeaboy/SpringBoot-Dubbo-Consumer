@@ -90,7 +90,7 @@ public class MainTest {
     }
 
     @Test
-    public void esTest(){
+    public void esTest() {
         MrsoftrockDocument document = new MrsoftrockDocument();
         //查询条件
         BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
@@ -102,12 +102,8 @@ public class MainTest {
         NativeSearchQuery searchQuery = nativeQueryBuilder.build();
 
         SearchHits<MrsoftrockDocument> search = template.search(searchQuery, MrsoftrockDocument.class);
-   ;
         final List<SearchHit<MrsoftrockDocument>> collect = search.stream().collect(Collectors.toList());
         System.out.println(JSONObject.toJSONString(collect));
-//        Iterable<MrsoftrockDocument> search = mrsoftrockDocRepository.search()
-//                  .search(boolQueryBuilder);
-        //如果需要排序，可以考虑查询完了使用java 来排序
 
     }
 
