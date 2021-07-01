@@ -24,6 +24,19 @@ spring:
       validation-query: select 1 from dual
       log-abandoned: true
 
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+      client:
+        reactive:
+          endpoints: 10.88.128.65:9300
+          use-ssl: true
+          socket-timeout: 10s
+#          password:
+
+
+
 dubbo:
   application:
     name: dubbo-consumer
@@ -56,7 +69,7 @@ nacos:
     server-addr: 120.92.78.198:8848
     namespace: 2d4c5c4d-9ac8-4665-8eba-3b72345294e7
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: 10.88.128.65:9876
   producer:
     group: producer-nacos-consumer
 

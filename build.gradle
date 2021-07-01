@@ -71,6 +71,13 @@ dependencies {
 
     implementation group: 'org.redisson', name: 'redisson', version: '3.15.5'
 
+    implementation group: 'com.google.zxing', name: 'core', version: '3.4.1'
+    implementation group: 'cn.hutool', name: 'hutool-all', version: '5.7.2'
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch', version: '2.3.7.RELEASE'
+
+
+
 
 
 
