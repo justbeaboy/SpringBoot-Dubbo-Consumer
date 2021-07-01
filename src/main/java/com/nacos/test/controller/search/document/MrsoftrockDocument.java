@@ -1,5 +1,7 @@
 package com.nacos.test.controller.search.document;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.nacos.test.controller.utils.DateFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
@@ -18,7 +20,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "mrsoftrock", type = "test")
+@Document(indexName = "mrsoftrock")
 public class MrsoftrockDocument {
 
     @Id
@@ -32,7 +34,7 @@ public class MrsoftrockDocument {
     @Field(type = FieldType.Integer)
     Integer age;
 
-
+//    @Field(type = FieldType.Date)
 //    Date date;
 
 }

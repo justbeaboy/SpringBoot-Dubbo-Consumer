@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  **/
 @Service
 @Slf4j
-@RocketMQMessageListener(consumerGroup = "guava-group", topic = "guava_hello_topic11")
+@RocketMQMessageListener(consumerGroup = "guava-group---1", topic = "guava_hello_topic11")
 public class MqDelayTaskListener implements RocketMQListener<MessageExt>, RocketMQPushConsumerLifecycleListener {
     @Override
     public void onMessage(MessageExt message) {

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
@@ -30,6 +31,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Mr.SoftRock
@@ -71,7 +74,7 @@ public class MainTest {
                 "好像，自己真的感受不到，来自其他同事那渴望休息的绝望的目光。\n" +
                 "跪求，就中午那一点点的休息时间，还给我们吧。\n" +
                 "我劝你善良\n";
-        QrCodeUtil.generate(txt, 300, 300, FileUtil.file("/Users/mr.softrock/Documents/Mr.SoftRock/个人文件/I_advise_you_to_be_kind.jpg"));
+//        QrCodeUtil.generate(txt, 300, 300, FileUtil.file("/Users/mr.softrock/Documents/Mr.SoftRock/个人文件/I_advise_you_to_be_kind.jpg"));
 //        System.out.println( );
 //        byte[] decode = Base64.getDecoder().decode(txt);
 //        ByteArrayInputStream bais = new ByteArrayInputStream(decode);
@@ -93,13 +96,15 @@ public class MainTest {
         BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
         boolQueryBuilder.must(QueryBuilders.matchQuery("name", "中国"));
 //        boolQueryBuilder.should(QueryBuilders.termQuery("deptName.keyword", "测试部门"));
-//        mrsoftrockDocRepository.f
+
         NativeSearchQueryBuilder nativeQueryBuilder = new NativeSearchQueryBuilder()
                 .withQuery(boolQueryBuilder);
         NativeSearchQuery searchQuery = nativeQueryBuilder.build();
 
         SearchHits<MrsoftrockDocument> search = template.search(searchQuery, MrsoftrockDocument.class);
-        System.out.println(search.get());
+   ;
+        final List<SearchHit<MrsoftrockDocument>> collect = search.stream().collect(Collectors.toList());
+        System.out.println(JSONObject.toJSONString(collect));
 //        Iterable<MrsoftrockDocument> search = mrsoftrockDocRepository.search()
 //                  .search(boolQueryBuilder);
         //如果需要排序，可以考虑查询完了使用java 来排序

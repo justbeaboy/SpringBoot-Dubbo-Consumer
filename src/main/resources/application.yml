@@ -30,7 +30,7 @@ spring:
         enabled: true
       client:
         reactive:
-          endpoints: 10.88.128.65:9300
+          endpoints: 10.128.88.65:9200
           use-ssl: true
           socket-timeout: 10s
 #          password:
