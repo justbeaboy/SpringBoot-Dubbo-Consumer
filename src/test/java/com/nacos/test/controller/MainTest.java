@@ -1,11 +1,9 @@
 package com.nacos.test.controller;
 
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.extra.qrcode.QrCodeUtil;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import com.nacos.test.controller.redisdalaymq.message.DelayMessage;
+import com.nacos.test.controller.mapper.dao.ISysSeqDaoSv;
+import com.nacos.test.controller.mapper.entity.SysSeq;
 import com.nacos.test.controller.redisdalaymq.service.RedisUtil;
 import com.nacos.test.controller.search.document.MrsoftrockDocument;
 import com.nacos.test.controller.search.repository.MrsoftrockDocRepository;
@@ -22,16 +20,12 @@ import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.util.Base64;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -53,6 +47,9 @@ public class MainTest {
 
     @Autowired
     ElasticsearchRestTemplate template;
+
+    @Autowired
+    ISysSeqDaoSv sysSeqDaoSv;
 
     @Test
     public void redisTest() {
@@ -105,6 +102,29 @@ public class MainTest {
         final List<SearchHit<MrsoftrockDocument>> collect = search.stream().collect(Collectors.toList());
         System.out.println(JSONObject.toJSONString(collect));
 
+    }
+
+    @Test
+    public void lambdaTest() {
+        List<Long> list = Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L);
+        List<String> strList = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
+
+        Map<Boolean, List<Long>> map = list.stream().collect(Collectors.partitioningBy(x -> x > 3L));
+        System.out.print("map:" + JSONObject.toJSONString(map));
+
+        List<Long> skipList = list.stream().filter(x -> x > 3L).skip(1).collect(Collectors.toList());
+        System.out.print("skipList:" + JSONObject.toJSONString(skipList));
+
+        List<String> words = Arrays.asList("Hello", "Mr.SoftRock");
+        List<String> uniqueCharacters = words.stream().map(x -> x.split("")).flatMap(Arrays::stream).collect(Collectors.toList());
+        System.out.println("uniqueCharacters:" + JSONObject.toJSONString(uniqueCharacters));
+//        int sum
+    }
+
+    @Test
+    public void canalTest() {
+        List<SysSeq> sysSeqs = sysSeqDaoSv.list();
+        System.out.println(JSONObject.toJSON(sysSeqs));
     }
 
 }

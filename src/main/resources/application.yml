@@ -15,9 +15,9 @@ spring:
     #    driverClassName: com.mysql.cj.jdbc.Driver
     driverClassName: com.mysql.jdbc.Driver
     #    url: jdbc:mysql://120.92.9.92:3306
-    url: jdbc:mysql://120.92.9.92:3306
-    username: annotation_admin
-    password: annotation@admin123
+    url: jdbc:mysql://localhost:3306/mrsoftrock?characterEncoding=utf-8&serverTimezone=GMT
+    username: root
+    password: 12345678
     druid:
       keep-alive: true
       min-evictable-idle-time-millis: 300000
