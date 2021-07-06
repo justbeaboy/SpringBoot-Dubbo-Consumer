@@ -123,7 +123,7 @@ public class MainTest {
 
     @Test
     public void canalTest() {
-        List<SysSeq> sysSeqs = sysSeqDaoSv.list();
+        List<SysSeq> sysSeqs = sysSeqDaoSv.lambdaQuery().list();
         System.out.println(JSONObject.toJSON(sysSeqs));
     }
 

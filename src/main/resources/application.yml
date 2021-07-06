@@ -59,15 +59,15 @@ dubbo:
 #    protocol: zookeeper
 #    address: 120.92.78.198:2181
   registry:
-    address: nacos://120.92.78.198:8848
-    parameters[namespace]: 8e6155c7-1149-4d45-a5f4-c87c2bbb4e47
+    address: nacos://10.88.128.65:8848
+#    parameters[namespace]: 8e6155c7-1149-4d45-a5f4-c87c2bbb4e47
   metadata-report:
-    address: nacos://10.33.0.160:8848
+    address: nacos://10.88.128.65:8848
 
 nacos:
   config:
-    server-addr: 120.92.78.198:8848
-    namespace: 2d4c5c4d-9ac8-4665-8eba-3b72345294e7
+    server-addr: 10.88.128.65:8848
+#    namespace: 2d4c5c4d-9ac8-4665-8eba-3b72345294e7
 rocketmq:
   name-server: 10.88.128.65:9876
   producer:
