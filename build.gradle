@@ -79,7 +79,7 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch', version: '2.3.7.RELEASE'
 
     //canal
-    implementation group: 'com.alibaba.otter', name: 'canal.client', version: '1.1.5'
+    implementation group: 'com.alibaba.otter', name: 'canal.client', version: '1.1.4'
 
 
 
