@@ -30,43 +30,43 @@ public class CanalClient implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        //第一步：与canal进行连接
-        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("localhost",
-                11111), "example", "", "");
-        int batchSize = 1000;
-        try {
-            connector.connect();
-            //第二步:开启订阅
-            connector.subscribe(".*\\..*");
-            connector.rollback();
-            try {
-                //第三步：循环订阅
-                while (true) {
-                    //尝试从master那边拉去数据batchSize条记录，有多少取多少
-                    //每次读取1000条
-                    Message message = connector.getWithoutAck(batchSize);
-                    long batchId = message.getId();
-                    int size = message.getEntries().size();
-                    if (batchId == -1 || size == 0) {
-                        Thread.sleep(1000);
-                    } else {
-                        dataHandle(message.getEntries());
-                    }
-                    connector.ack(batchId);
-
-//                    当队列里面堆积的sql大于一定数值的时候就模拟执行
-                    if (SQL_QUEUE.size() >= 1) {
-                        executeQueueSql();
-                    }
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (InvalidProtocolBufferException e) {
-                e.printStackTrace();
-            }
-        } finally {
-            connector.disconnect();
-        }
+//        //第一步：与canal进行连接
+//        CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("localhost",
+//                11111), "example", "", "");
+//        int batchSize = 1000;
+//        try {
+//            connector.connect();
+//            //第二步:开启订阅
+//            connector.subscribe(".*\\..*");
+//            connector.rollback();
+//            try {
+//                //第三步：循环订阅
+//                while (true) {
+//                    //尝试从master那边拉去数据batchSize条记录，有多少取多少
+//                    //每次读取1000条
+//                    Message message = connector.getWithoutAck(batchSize);
+//                    long batchId = message.getId();
+//                    int size = message.getEntries().size();
+//                    if (batchId == -1 || size == 0) {
+//                        Thread.sleep(1000);
+//                    } else {
+//                        dataHandle(message.getEntries());
+//                    }
+//                    connector.ack(batchId);
+//
+////                    当队列里面堆积的sql大于一定数值的时候就模拟执行
+//                    if (SQL_QUEUE.size() >= 1) {
+//                        executeQueueSql();
+//                    }
+//                }
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } catch (InvalidProtocolBufferException e) {
+//                e.printStackTrace();
+//            }
+//        } finally {
+//            connector.disconnect();
+//        }
     }
 
 
