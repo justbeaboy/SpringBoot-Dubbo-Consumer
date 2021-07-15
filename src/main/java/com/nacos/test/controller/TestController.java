@@ -175,14 +175,14 @@ public class TestController {
             writeSheet.setSheetName("模版");
 
             long lastBatchMaxId = 0L;
-            int limit = 10000;
+            int limit = 100000;
             for (; ; ) {
                 List<Dict> dicts = dictQuery.query(lastBatchMaxId, limit);
                 if (CollectionUtils.isEmpty(dicts)) {
                     excelWriter.finish();
-                    return;
+                    break;
                 } else {
-                    lastBatchMaxId = dicts.stream().max(Comparator.comparing(Dict::getDictId)).get().getDictId();
+                    lastBatchMaxId = dicts.stream().map(Dict::getDictId).max(Long::compareTo).orElse(Long.MAX_VALUE);
                     excelWriter.write(dicts, writeSheet);
                 }
 
