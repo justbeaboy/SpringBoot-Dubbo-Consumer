@@ -154,15 +154,15 @@ public final class OptionalBean<T> {
     }
 
     public static void main(String[] args) {
-        Test test = new Test();
-        test.setName("你好 test");
-
-//        Test.Test1 test1 = new Test.Test1();
-//        test.setTest1(test1);
-
-        String value1 = OptionalBean.ofNullable(test).getBean(Test::getTest1).getBean(Test.Test1::getName).get();
-        System.out.println("value1-->" + value1);
-        boolean present = OptionalBean.ofNullable(test).getBean(Test::getTest1).getBean(Test.Test1::getName).ifPresent();
-        System.out.println("present-->" + present);
+//        Test test = new Test();
+//        test.setName("你好 test");
+//
+////        Test.Test1 test1 = new Test.Test1();
+////        test.setTest1(test1);
+//
+//        String value1 = OptionalBean.ofNullable(test).getBean(Test::getTest1).getBean(Test.Test1::getName).get();
+//        System.out.println("value1-->" + value1);
+//        boolean present = OptionalBean.ofNullable(test).getBean(Test::getTest1).getBean(Test.Test1::getName).ifPresent();
+//        System.out.println("present-->" + present);
     }
 }

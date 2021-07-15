@@ -24,7 +24,7 @@ import java.util.List;
 @Service
 @Slf4j
 @RocketMQMessageListener(consumerGroup = "canal-group",
-        topic = "mrsoftrock_dict_desc",
+        topic = "mrsoftrock_dict_desc------",
         selectorExpression = "*",
         consumeMode = ConsumeMode.ORDERLY,
         consumeThreadMax = 1
@@ -45,7 +45,7 @@ public class CanalListener implements RocketMQListener<MessageExt>, RocketMQPush
     @Override
     public void prepareStart(DefaultMQPushConsumer consumer) {
         try {
-            consumer.subscribe("mrsoftrock_dict_desc", "*");
+            consumer.subscribe("mrsoftrock_dict_desc----", "*");
         } catch (Exception e) {
             e.printStackTrace();
         }

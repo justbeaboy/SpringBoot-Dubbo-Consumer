@@ -3,10 +3,13 @@ package com.nacos.test.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.baomidou.mybatisplus.core.toolkit.SystemClock;
 import com.nacos.test.config.NacosConfig;
 import com.nacos.test.controller.dalymq.delaymq.DelayMqProducer;
+import com.nacos.test.controller.excel.WriteExcelUtils;
 import com.nacos.test.controller.redisdalaymq.message.DelayMessage;
 import com.nacos.test.controller.redisdalaymq.rocketmq.MessageProducer;
+import com.nacos.test.controller.redisdalaymq.util.Test;
 import com.nacos.test.service.ICunsumerProxySv;
 import com.nacos.test.service.IMqtestSv;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
 
 /**
  * @author Mr.SoftRock
@@ -72,6 +74,46 @@ public class TestController {
 
     }
 
+    @GetMapping(value = "/export")
+    public void export(HttpServletResponse response) {
+
+        List<List<Object>> dataList = new ArrayList<>();
+
+        List<com.nacos.test.controller.redisdalaymq.util.Test> tests = new ArrayList<>();
+
+        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("张三").age(10).address("北京").build());
+        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("李四").age(20).address("北京").build());
+        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("王五").age(20).address("上海").build());
+        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("赵四").age(10).address("铁岭").build());
+//        for (Test test : tests) {
+//            List<Object> objects = new ArrayList<>();
+//            objects.add(test.getName());
+//            objects.add(test.getAge());
+//            objects.add(test.getAddress());
+//            dataList.add(objects);
+//        }
+
+        for (int i = 0; i < 10; i++) {
+            List<Object> objects = new ArrayList<>();
+            objects.add("姓名：" + i);
+            objects.add("年龄：" + i);
+            objects.add("地址：" + i);
+            dataList.add(objects);
+        }
+
+        List<String> titleList = new ArrayList<>(2);
+        titleList.add("姓名");
+        titleList.add("年龄");
+        titleList.add("地址");
+
+        List<String> mergeTitles = new ArrayList<>(2);
+        mergeTitles.add("年龄");
+        mergeTitles.add("地址");
+
+        WriteExcelUtils.customDynamicExport(response, "测试导出", titleList, Collections.emptyList(), dataList);
+
+    }
+
     private void send(int n) {
         DelayMessage delayMessage = new DelayMessage();
         delayMessage.setTopic("mrsoftrocktest");
@@ -109,5 +151,17 @@ public class TestController {
         } finally {
             System.out.println("-----");
         }
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("自增id输出-->{}"+i+"===>"+ IdWorker.getId());
+        }
+
+        //1415574208741638146
+        //1415574324001128450
+        //1415578079618678786
+
+        //1415574208741638155
     }
 }

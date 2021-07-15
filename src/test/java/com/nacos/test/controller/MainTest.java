@@ -23,6 +23,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -125,6 +126,12 @@ public class MainTest {
     public void canalTest() {
         List<SysSeq> sysSeqs = sysSeqDaoSv.lambdaQuery().list();
         System.out.println(JSONObject.toJSON(sysSeqs));
+    }
+
+    @Test
+    public void excelTest(){
+//模拟导入100w条数据
+
     }
 
 }

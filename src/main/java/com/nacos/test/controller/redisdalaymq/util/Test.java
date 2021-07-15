@@ -1,5 +1,6 @@
 package com.nacos.test.controller.redisdalaymq.util;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -7,15 +8,20 @@ import lombok.Data;
  * @Date 2021/7/14 16:48
  **/
 @Data
+@Builder
 public class Test {
 
 
     String name;
 
-    Test1 test1;
+    Integer age;
 
-    @Data
-    public static class Test1{
-        String name;
-    }
+    String address;
+
+//    Test1 test1;
+//
+//    @Data
+//    public static class Test1{
+//        String name;
+//    }
 }
