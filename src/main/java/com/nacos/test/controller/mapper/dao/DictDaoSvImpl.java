@@ -5,10 +5,17 @@ import com.nacos.test.controller.mapper.entity.Dict;
 import com.nacos.test.controller.mapper.mapper.DictMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Mr.SoftRock
  * @Date 2021/7/15 17:24
  **/
 @Service
-public class DictDaoSvImpl extends ServiceImpl<DictMapper,Dict> implements IDictDaoSv {
+public class DictDaoSvImpl extends ServiceImpl<DictMapper, Dict> implements IDictDaoSv {
+
+    @Override
+    public List<Dict> select(int limit) {
+        return null;
+    }
 }
