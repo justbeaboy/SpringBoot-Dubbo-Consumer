@@ -2,7 +2,10 @@ package com.nacos.test.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.google.common.base.Stopwatch;
+import com.nacos.test.controller.mapper.dao.IDictDaoSv;
 import com.nacos.test.controller.mapper.dao.ISysSeqDaoSv;
+import com.nacos.test.controller.mapper.entity.Dict;
 import com.nacos.test.controller.mapper.entity.SysSeq;
 import com.nacos.test.controller.redisdalaymq.service.RedisUtil;
 import com.nacos.test.controller.search.document.MrsoftrockDocument;
@@ -27,6 +30,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -51,6 +57,10 @@ public class MainTest {
 
     @Autowired
     ISysSeqDaoSv sysSeqDaoSv;
+
+    @Autowired
+    IDictDaoSv dictDaoSv;
+
 
     @Test
     public void redisTest() {
@@ -129,9 +139,36 @@ public class MainTest {
     }
 
     @Test
-    public void excelTest(){
-//模拟导入100w条数据
+    public void excelTest() {
+        //模拟导入100w条数据
+//        List<Future<?>> futures = new ArrayList<>();
+        final Stopwatch stopwatch = Stopwatch.createStarted();
+        List<CompletableFuture> futureList = new ArrayList<>();
 
+        for (int i = 0; i < 1000; i++) {
+            List<Dict> dicts = new ArrayList<>(1000);
+            for (int j = 0; j < 900; j++) {
+                Dict dict = new Dict();
+                dict.setDictId(IdWorker.getId());
+                dict.setTypeCode("test");
+                dict.setParamCode("test");
+                dict.setParamValue("1");
+                dict.setParamDesc(String.valueOf(j));
+                dict.setSort(0);
+                dict.setRemark("测试导出");
+                dict.setStatus("1");
+                dicts.add(dict);
+            }
+            dictDaoSv.saveBatch(dicts);
+//            CompletableFuture future = CompletableFuture.runAsync(() -> {
+//
+//                    }
+//
+//            );
+//            futureList.add(future);
+        }
+//        CompletableFuture.allOf(futureList.toArray(new CompletableFuture[0]));
+        System.out.println("新增测试数据信息耗时：{}" + stopwatch.elapsed(TimeUnit.SECONDS));
     }
 
 }
