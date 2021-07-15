@@ -16,8 +16,8 @@ public interface DictQuery {
 
 
     @Select("<script>\n" +
-            "select dict_id,type_code,param_code,param_value,sort,status\n" +
-            "where dict_id > #{lastBatchMaxId} and order_by dict_id asc limit  #{limit}\n" +
+            "select dict_id,type_code,param_code,param_value,sort,status from dict\n" +
+            "where dict_id > #{lastBatchMaxId}  order by dict_id asc limit  #{limit}\n" +
             "</script>")
     List<Dict> query(@Param("lastBatchMaxId") long lastBatchMaxId, @Param("limit") int limit);
 }
