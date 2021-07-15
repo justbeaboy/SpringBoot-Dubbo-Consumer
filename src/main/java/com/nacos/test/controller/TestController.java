@@ -153,6 +153,7 @@ public class TestController {
         titleList.add("param_desc");
         titleList.add("sort");
         titleList.add("status");
+        long start = System.currentTimeMillis();
 
         OutputStream outputStream = null;
         //处理导出excel
@@ -162,6 +163,8 @@ public class TestController {
             log.error("查询导出列表数据,获取输出流失败,失败原因->{}", ex.toString());
         }
         try {
+            setResponse(response, "ceshidaochu");
+
             List<List<String>> headTitleInfo = excelTitle(titleList);
 
             ExcelWriter excelWriter = new ExcelWriterBuilder()
