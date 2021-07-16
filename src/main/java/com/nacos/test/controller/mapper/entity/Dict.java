@@ -49,17 +49,17 @@ public class Dict extends Model<Dict> implements Serializable {
     @TableField("DELETED")
     String deleted;
 
-    @TableField("CREATED_BY")
-    Long createdBy;
+    @TableField("CREATE_BY")
+    Long createBy;
 
-    @TableField("CREATED_TIME")
-    Date createdTime;
+    @TableField("CREATE_DATE")
+    Date createDate;
 
-    @TableField("UPDATED_BY")
-    Long updatedBy;
+    @TableField("UPDATE_BY")
+    Long updateBy;
 
-    @TableField("UPDATED_TIME")
-    Date updatedTime;
+    @TableField("UPDATE_DATE")
+    Date updateDate;
 
     @Override
     protected Serializable pkVal() {

@@ -15,6 +15,7 @@ import com.nacos.test.config.NacosConfig;
 import com.nacos.test.controller.dalymq.delaymq.DelayMqProducer;
 import com.nacos.test.controller.excel.MillionExcelUtils;
 import com.nacos.test.controller.excel.WriteExcelUtils;
+import com.nacos.test.controller.excel.WriteExcelUtilsPlus;
 import com.nacos.test.controller.mapper.dao.IDictDaoSv;
 import com.nacos.test.controller.mapper.entity.Dict;
 import com.nacos.test.controller.mapper.mapper.DictQuery;
@@ -103,14 +104,15 @@ public class TestController {
     @GetMapping(value = "/export")
     public void export(HttpServletResponse response) {
 
+        long start = SystemClock.now();
         List<List<Object>> dataList = new ArrayList<>();
-
-        List<com.nacos.test.controller.redisdalaymq.util.Test> tests = new ArrayList<>();
-
-        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("张三").age(10).address("北京").build());
-        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("李四").age(20).address("北京").build());
-        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("王五").age(20).address("上海").build());
-        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("赵四").age(10).address("铁岭").build());
+//
+//        List<com.nacos.test.controller.redisdalaymq.util.Test> tests = new ArrayList<>();
+//
+//        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("张三").age(10).address("北京").build());
+//        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("李四").age(20).address("北京").build());
+//        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("王五").age(20).address("上海").build());
+//        tests.add(com.nacos.test.controller.redisdalaymq.util.Test.builder().name("赵四").age(10).address("铁岭").build());
 //        for (Test test : tests) {
 //            List<Object> objects = new ArrayList<>();
 //            objects.add(test.getName());
@@ -119,30 +121,14 @@ public class TestController {
 //            dataList.add(objects);
 //        }
 
-        for (int i = 0; i < 10; i++) {
-            List<Object> objects = new ArrayList<>();
-            objects.add("姓名：" + i);
-            objects.add("年龄：" + i);
-            objects.add("地址：" + i);
-            dataList.add(objects);
-        }
 
-        List<String> titleList = new ArrayList<>(2);
-        titleList.add("姓名");
-        titleList.add("年龄");
-        titleList.add("地址");
-
-        List<String> mergeTitles = new ArrayList<>(2);
-        mergeTitles.add("年龄");
-        mergeTitles.add("地址");
-
-//        WriteExcelUtils.customDynamicExport(response, "测试导出", titleList, Collections.emptyList(), dataList);
-//        MillionExcelUtils.customDynamicExport(response, "测试导出", titleList, Collections.emptyList(), dataList);
-
-    }
-
-    @GetMapping(value = "/millionExport")
-    public void millionExport(HttpServletResponse response) {
+//        for (int i = 0; i < 10; i++) {
+//            List<Object> objects = new ArrayList<>();
+//            objects.add("姓名：" + i);
+//            objects.add("年龄：" + i);
+//            objects.add("地址：" + i);
+//            dataList.add(objects);
+//        }
 
 
         List<String> titleList = new ArrayList<>(2);
@@ -153,7 +139,43 @@ public class TestController {
         titleList.add("param_desc");
         titleList.add("sort");
         titleList.add("status");
-        long start = System.currentTimeMillis();
+
+        List<String> mergeTitles = new ArrayList<>(2);
+        mergeTitles.add("年龄");
+        mergeTitles.add("地址");
+
+        List<Dict> dicts = dictDaoSv.list();
+        dicts.forEach(d -> {
+            List<Object> objects = new ArrayList<>();
+            objects.add(d.getDictId());
+            objects.add(d.getTypeCode());
+            objects.add(d.getParamCode());
+            objects.add(d.getParamValue());
+            objects.add(d.getParamDesc());
+            objects.add(d.getSort());
+            objects.add(d.getStatus());
+
+            dataList.add(objects);
+        });
+
+//        WriteExcelUtils.customDynamicExport(response, "测试导出", titleList, Collections.emptyList(), dataList);
+        WriteExcelUtilsPlus.customDynamicExport(response,"测试导出100w",titleList,Collections.emptyList(), dataList,"sheet页");
+        log.info("导出100w数据耗时===》{}", (SystemClock.now() - start) / 1000);
+    }
+
+    @GetMapping(value = "/millionExport")
+    public void millionExport(HttpServletResponse response) {
+
+        long start = SystemClock.now();
+
+        List<String> titleList = new ArrayList<>(2);
+        titleList.add("ID");
+        titleList.add("type_code");
+        titleList.add("param_code");
+        titleList.add("param_value");
+        titleList.add("param_desc");
+        titleList.add("sort");
+        titleList.add("status");
 
         OutputStream outputStream = null;
         //处理导出excel
@@ -203,6 +225,8 @@ public class TestController {
                 }
             }
         }
+        log.info("导出100w数据耗时===》{}", (SystemClock.now() - start) / 1000);
+
     }
 
     private void send(int n) {
